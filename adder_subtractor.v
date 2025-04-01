@@ -24,6 +24,33 @@ assign cout = c[4];
 
 endmodule
 
+////behavioural and dataflow models/////
+
+module adder_sub_beh(
+    input [3:0] a, input [3:0] b,
+    input mode,
+    output reg [3:0] sum, output reg cout);
+    always@(*)begin
+        if(mode == 0)begin
+            {cout, sum} = a+b;
+        end
+        else begin
+            {cout, sum} = a+(~b+1);
+        end
+    end
+endmodule
 
 
+module addersub_dataf(
+    input [3:0]a,input [3:0]b,
+    input mode,
+    output [3:0]sum,output cout);
+    wire [3:0]w;
+    wire [4:0] result;
+    
+    assign w=b^{4{mode}};
+    assign result=a+w+mode;
+    assign sum=result[3:0];
+    assign cout=result[4];
+endmodule
 
