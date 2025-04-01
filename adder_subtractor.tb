@@ -1,0 +1,21 @@
+// Testbench
+module adder_sub_tb();
+    reg [3:0] a, b;
+    reg mode;
+    wire [3:0] sum;
+    wire cout;
+
+    // Instantiate adder_sub module
+    adder_sub uut (a, b, mode, sum, cout);
+
+    initial begin
+        
+
+        a = 4'b0000; b = 4'b0000; mode = 0; #10;
+        a = 4'b0101; b = 4'b0011; mode = 0; #10;
+        a = 4'b1010; b = 4'b0101; mode = 1; #10;
+        a = 4'b1001; b = 4'b0101; mode = 1; #10;
+
+        $finish;
+    end
+endmodule
